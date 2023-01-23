@@ -6,16 +6,16 @@
 
 
 
-Final Table
-------------------------------------------------------------------------------------------------------------
-Voted Percentage| Correct | Wrong | Total Occurences | Average Total Votes | Fight Night Count | UFC Count |
-------------------------------------------------------------------------------------------------------------
-      99%       |    55   |   1   |        56        |         1250        |        25         |     31    |
+Table 1
+
+| Voted | Correct | Total Votes |       Fight          |  Event   |
+--------|---------|-------------|----------------------|----------|
+|  99%  |  True   |    4000     |   Mcgregor vs Aldo   |   UFC    |
 
 
+Table 2
 
-Individual Table
--------------------------------------------------------------------------|
-Voted Percentage | Correct | Total Votes |       Fight          |  Event
--------------------------------------------------------------------------|
-      99%        |  True   |    4000     |   Mcgregor vs Aldo   |   UFC
+| Voted | Correct | Wrong | Total | Average Total Votes | Fight Night Count | UFC Count |
+|-------|---------|---------------|---------------------|-------------------|-----------|
+|  99%  |    55   |   1   |   56  |       1250          |        25         |     31    |
+
