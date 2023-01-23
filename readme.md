@@ -13,9 +13,11 @@ Table 1
 |  99%  |  True   |    4000     |   Mcgregor vs Aldo   |   UFC    |
 
 
+
+
+
 Table 2
 
 | Voted | Correct | Wrong | Total | Average Total Votes | Fight Night Count | UFC Count |
 --------|---------|-------|-------|---------------------|-------------------|-----------|
 |  99%  |    55   |   1   |   56  |       1250          |        25         |     31    |
-
