@@ -106,4 +106,14 @@ def main():
         print("#######################    UFC PROMOTION PAGE FINISHED   #######################################")
 
 
-#main()
+
+
+
+
+
+get_fight_data("https://www.tapology.com/fightcenter/events/79118-ufc-fight-night", 12, 3, 20)
+print("#######################    EVENT FINISHED   #######################################")
+get_fight_data("https://www.tapology.com/fightcenter/events/78675-ufc-265", 13, 3, 21)
+print("#######################    EVENT FINISHED   #######################################")
+get_fight_data("https://www.tapology.com/fightcenter/events/78698-ufc-fight-night", 10, 3, 22)
+print("#######################    EVENT FINISHED   #######################################")
