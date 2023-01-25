@@ -2,6 +2,8 @@ from selenium import webdriver
 import re
 from selenium.webdriver.common.by import By
 
+
+
 def get_fight_outcome(result, fighter_name, outcome_to_check):
 
     result = result.text.split("\n")
@@ -16,9 +18,11 @@ def get_fight_outcome(result, fighter_name, outcome_to_check):
         return False
 
  
-def get_fight_data(link, number_of_fights): 
+
+def get_fight_data(link, number_of_fights, page_number, event_number): 
 
 
+    arr = []
     #iterate each fight
     for j in range(number_of_fights):
         
@@ -59,25 +63,51 @@ def get_fight_data(link, number_of_fights):
                 "dec_outcome": get_fight_outcome(outcome[0], fighter_name[i].text, "DECISION"),
                 "draw_outcome": get_fight_outcome(outcome[0], fighter_name[i].text, "DRAW")
             }
-        
-            print(fighter_schema)
 
+            arr.append(fighter_schema)
+        
+        print("Completed processing a fight.......")
+
+    file_name = "page_number_" + str(page_number) + "_event_number_"+str(event_number)+".txt"
+    f = open(file_name,"w")
+    f.write(str(arr))
+        
 
 def get_fight_count(link):
     driver = webdriver.Chrome()
     driver.get(link)
     return len(driver.find_elements(By.CLASS_NAME, "fightCardBoutNumber"))
 
+def main():
+    #pages 2-16 of ufc promotion have predictions
+    for i in range(2, 16):
 
-#get on ufc promotion page
-driver = webdriver.Chrome()
-driver.get("https://www.tapology.com/fightcenter/promotions/1-ultimate-fighting-championship-ufc?page=2")
-fight_card_list = driver.find_elements(By.CLASS_NAME, "name")
+        #get ufc promotion page
+        driver = webdriver.Chrome()
+        driver.get("https://www.tapology.com/fightcenter/promotions/1-ultimate-fighting-championship-ufc?page="+str(i))
+        fight_card_list = driver.find_elements(By.CLASS_NAME, "name")
+
+        print("UFC promotion page: ", i, " has its events being processed.....")
 
 
-#iterate through ufc events on single page
-for fight in fight_card_list:
-    link = fight.find_element(By.TAG_NAME, "a").get_attribute("href")
-    get_fight_data(link, get_fight_count(link))
-    print("EVENT FINISHED ABOVE")
-    print("#############################################################################")
+        #iterate through ufc events on specific page
+        #note: stopped at 2 for page 2
+        for j in range(len(fight_card_list)):
+
+            print("Processing event:" + str(j) + "......")
+
+
+            link = fight_card_list[j].find_element(By.TAG_NAME, "a").get_attribute("href")        
+            get_fight_data(link, get_fight_count(link), i, j)
+
+
+            print("#######################    EVENT FINISHED   #######################################")
+
+        print("#######################    UFC PROMOTION PAGE FINISHED   #######################################")
+
+
+#main()
+
+
+
+
