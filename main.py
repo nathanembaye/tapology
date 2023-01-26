@@ -80,7 +80,7 @@ def get_fight_count(link):
 
 def main():
     #pages 2-16 of ufc promotion have predictions
-    for i in range(2, 16):
+    for i in range(13, 15):
 
         #get ufc promotion page
         driver = webdriver.Chrome()
@@ -105,15 +105,4 @@ def main():
 
         print("#######################    UFC PROMOTION PAGE FINISHED   #######################################")
 
-
-
-
-
-
-
-get_fight_data("https://www.tapology.com/fightcenter/events/79118-ufc-fight-night", 12, 3, 20)
-print("#######################    EVENT FINISHED   #######################################")
-get_fight_data("https://www.tapology.com/fightcenter/events/78675-ufc-265", 13, 3, 21)
-print("#######################    EVENT FINISHED   #######################################")
-get_fight_data("https://www.tapology.com/fightcenter/events/78698-ufc-fight-night", 10, 3, 22)
-print("#######################    EVENT FINISHED   #######################################")
+main()
