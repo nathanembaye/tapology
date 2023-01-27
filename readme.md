@@ -6,18 +6,9 @@
 
 
 
-Table 1
+Fights table
 
-| Voted | Correct | Total Votes |       Fight          |  Event   |
---------|---------|-------------|----------------------|----------|
-|  99%  |  True   |    4000     |   Mcgregor vs Aldo   |   UFC    |
-
-
-
-
-
-Table 2
-
-| Voted | Correct | Wrong | Total | Average Total Votes | Fight Night Count | UFC Count |
---------|---------|-------|-------|---------------------|-------------------|-----------|
-|  99%  |    55   |   1   |   56  |       1250          |        25         |     31    |
+voted_percentage | won_fight | total_votes |        fight         | event    | tko_vote | sub_vote | dec_vote | tko_outcome | sub_outcome | dec_outcome | draw_outcome |
+-----------------|-----------|-------------|----------------------|----------|----------|----------|----------|-------------|-------------|-------------|--------------|
+|  70%           |  True     |    4000     |   Mcgregor vs Aldo   |   UFC    |    45    |     5    |    50    |    true     |    false    |     false   |    false     | 
+|  30%           |  False    |    4000     |   Mcgregor vs Aldo   |   UFC    |     10   |    20    |    70    |    false    |    false    |    false    |    false     |
