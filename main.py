@@ -1,5 +1,6 @@
 from selenium import webdriver 
 import re
+import os
 from selenium.webdriver.common.by import By
 
 
@@ -60,7 +61,8 @@ def get_fight_data(link, number_of_fights, page_number, event_number):
                 break
             
 
-
+           
+           
             #store in schema
             fighter_schema = { 
                 "voted_percentage": re.sub("[^\d\.]", "", fighter_vote[i].text),
@@ -100,8 +102,9 @@ def get_fight_count(link):
 
 
 def main():
-    #pages 2-16 of ufc promotion have predictions
-    #16
+
+    
+    #pages 1-22 of ufc promotion have predictions
     for i in range(22):
 
         
@@ -127,4 +130,3 @@ def main():
 
         print("#######################    UFC PROMOTION PAGE FINISHED   #######################################") 
 
-main()
