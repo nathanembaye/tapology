@@ -1,6 +1,8 @@
 from selenium import webdriver 
 import re
 import os
+import ast
+import json
 from selenium.webdriver.common.by import By
 
 
@@ -103,7 +105,7 @@ def get_fight_count(link):
 
 def main():
 
-    
+
     #pages 1-22 of ufc promotion have predictions
     for i in range(22):
 
@@ -130,3 +132,22 @@ def main():
 
         print("#######################    UFC PROMOTION PAGE FINISHED   #######################################") 
 
+
+
+def text_to_json():
+
+    #get all files in directory
+    for file in os.listdir('output'):
+
+        #turn each .txt into .json
+        f = open("output/"+file.split('.')[0]+".txt", "r")
+        file_data = f.read()
+        file_data = { "data": ast.literal_eval(file_data)}
+
+        #write each .json into new folder
+        new_file = open("results/"+file.split('.')[0]+".json","w")
+        new_file.write(json.dumps(file_data))
+        
+    
+print(len(os.listdir('output')))
+print(len(os.listdir('results')))
