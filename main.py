@@ -25,7 +25,8 @@ def get_fight_data(link, number_of_fights, page_number, event_number):
     arr = []
     #iterate each fight
     for j in range(number_of_fights):
-        
+                
+
         driver = webdriver.Chrome()
         driver.get(link)
         fight_list = driver.find_elements(By.CLASS_NAME, "billing")
@@ -34,6 +35,7 @@ def get_fight_data(link, number_of_fights, page_number, event_number):
 
         #iterate over both fighters
         for i in range(2):
+
 
             
             #parse data from HTML
@@ -46,6 +48,17 @@ def get_fight_data(link, number_of_fights, page_number, event_number):
             sub_vote = driver.find_elements(By.CLASS_NAME, "sub_bar")
             dec_vote = driver.find_elements(By.CLASS_NAME, "dec_bar")
             outcome = driver.find_elements(By.CLASS_NAME, "results")
+
+
+            #older pages dont have previewContent div, get it from another div
+            if len(event_name) == 0:
+                 event_name = driver.find_elements(By.CLASS_NAME, "left")
+            
+
+            if len(fighter_vote) == 0:
+                print("NO PREDICTIONS FOR FIGHT: ", j, " on page number: ", page_number, " and event number: ", event_number)
+                break
+            
 
 
             #store in schema
@@ -66,22 +79,32 @@ def get_fight_data(link, number_of_fights, page_number, event_number):
 
             arr.append(fighter_schema)
         
-        print("Completed processing a fight.......")
+        print("Completed processing fight "+str(j+1)+"/"+str(number_of_fights)+" .......")
+
 
     file_name = "page_number_" + str(page_number) + "_event_number_"+str(event_number)+".txt"
     f = open(file_name,"w")
     f.write(str(arr))
-        
+
+
+
+
 
 def get_fight_count(link):
     driver = webdriver.Chrome()
     driver.get(link)
     return len(driver.find_elements(By.CLASS_NAME, "fightCardBoutNumber"))
 
+
+
+
+
 def main():
     #pages 2-16 of ufc promotion have predictions
-    for i in range(13, 15):
+    #16
+    for i in range(22):
 
+        
         #get ufc promotion page
         driver = webdriver.Chrome()
         driver.get("https://www.tapology.com/fightcenter/promotions/1-ultimate-fighting-championship-ufc?page="+str(i))
@@ -91,10 +114,9 @@ def main():
 
 
         #iterate through ufc events on specific page
-        #note: stopped at 2 for page 2
         for j in range(len(fight_card_list)):
 
-            print("Processing event:" + str(j) + "......")
+            print("Processing event: " + str(j+1)+"/"+str(len(fight_card_list))+" ......")
 
 
             link = fight_card_list[j].find_element(By.TAG_NAME, "a").get_attribute("href")        
@@ -103,6 +125,6 @@ def main():
 
             print("#######################    EVENT FINISHED   #######################################")
 
-        print("#######################    UFC PROMOTION PAGE FINISHED   #######################################")
+        print("#######################    UFC PROMOTION PAGE FINISHED   #######################################") 
 
 main()
