@@ -147,7 +147,3 @@ def text_to_json():
         #write each .json into new folder
         new_file = open("results/"+file.split('.')[0]+".json","w")
         new_file.write(json.dumps(file_data))
-        
-    
-print(len(os.listdir('output')))
-print(len(os.listdir('results')))
